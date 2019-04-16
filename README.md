@@ -1,176 +1,80 @@
-# gatsby-starter-gcn
+# Gatsby + Netlify CMS Starter
 
-A starter template to build amazing static websites with Gatsby, Contentful and Netlify. Inspired by [gatsby-contentful-starter](https://github.com/contentful-userland/gatsby-contentful-starter).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b654c94e-08a6-4b79-b443-7837581b1d8d/deploy-status)](https://app.netlify.com/sites/gatsby-starter-netlify-cms-ci/deploys)
 
-For Gatsby `v1` please use the [v1 branch](https://github.com/ryanwiemer/gatsby-starter-gcn/tree/v1)
+**Note:** This starter uses [Gatsby v2](https://www.gatsbyjs.org/blog/2018-09-17-gatsby-v2/).
 
-## Features
+This repo contains an example business website that is built with [Gatsby](https://www.gatsbyjs.org/), and [Netlify CMS](https://www.netlifycms.org): **[Demo Link](https://gatsby-netlify-cms.netlify.com/)**.
 
-- Contentful integration with ready to go placeholder content
-- Netlify integration including a pre-built contact form
-- Minimal responsive design - made to customize or tear apart
-- Pagination logic
-- Styled components
-- SEO Friendly Component
-  - JSON-LD Schema
-  - OpenGraph sharing support
-  - Sitemap Generation
-- Google Analytics
-- Progressive Web app
-- Offline Support
-- RSS Feed
-- [Gatsby Standard module](https://www.npmjs.com/package/eslint-config-gatsby-standard) for linting Javascript with StandardJS
-- Stylelint support for Styled Components to lint the CSS in JS
+It follows the [JAMstack architecture](https://jamstack.org) by using Git as a single source of truth, and [Netlify](https://www.netlify.com) for continuous deployment, and CDN distribution.
 
-## Demo
+## Features ##
 
-https://gcn.netlify.com/
+- A simple landing page with blog functionality built with Netlify CMS
+- Editabe Pages: Landing, About, Product, Blog-Collection and Contact page with Netlify Form support
+- Create Blog posts from Netlify CMS
+- Tags: Separate page for posts under each tag
+- Basic directory organization
+- Uses Bulma for styling, but size is reduced by `purge-css-plugin`
+- Blazing fast loading times thanks to pre-rendered HTML and automatic chunk loading of JS files
+- Uses `gatbsy-image` with Netlify-CMS preview support
+- Separate components for everything
+- Netlify deploy configuration
+- Netlify function support, see `src/lambda` folder
+- Perfect score on Lighthouse for SEO, Accessibility and Performance (wip:PWA)
+- ..and more
 
-![](screenshots/demo.jpg)
+## Prerequisites
 
-## Getting Started
+- Node (I recommend using v8.2.0 or higher)
+- [Gatsby CLI](https://www.gatsbyjs.org/docs/)
 
-### Install
+## Getting Started (Recommended)
 
+Netlify CMS can run in any frontend web environment, but the quickest way to try it out is by running it on a pre-configured starter site with Netlify. The example here is the Kaldi coffee company template (adapted from [One Click Hugo CMS](https://github.com/netlify-templates/one-click-hugo-cms)). Use the button below to build and deploy your own copy of the repository:
+
+<a href="https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/gatsby-starter-netlify-cms&amp;stack=cms"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+
+After clicking that button, you’ll authenticate with GitHub and choose a repository name. Netlify will then automatically create a repository in your GitHub account with a copy of the files from the template. Next, it will build and deploy the new site on Netlify, bringing you to the site dashboard when the build is complete. Next, you’ll need to set up Netlify’s Identity service to authorize users to log in to the CMS.
+
+### Access Locally
 ```
-git clone https://github.com/ryanwiemer/gatsby-starter-gcn.git
-npm i
+$ git clone https://github.com/[GITHUB_USERNAME]/[REPO_NAME].git
+$ cd [REPO_NAME]
+$ yarn
+$ npm run start
 ```
-
-Or via the [Gatsby CLI](https://www.npmjs.com/package/gatsby-cli)
-
+To test the CMS locally, you'll need run a production build of the site:
 ```
-gatsby new gatsby-starter-gcn https://github.com/ryanwiemer/gatsby-starter-gcn.git
-```
-
-### Setup Contentful
-
-1.  [Sign up](https://www.contentful.com/sign-up/) for Contentful and create a new empty space
-
-2.  `npm run setup`
-
-3.  Enter in the requested info for your Contentful space found here: **app.contentful.com** → **Space Settings** → **API keys**. You will need to provide both a standard API key (first tab) and a management key (second tab).
-
-## Customization
-
-### Website Data
-
-Edit [`/src/utils/siteConfig.js`](https://github.com/ryanwiemer/gatsby-starter-gcn/blob/master/src/utils/siteConfig.js)
-
-```js
-module.exports = {
-  siteTitle: 'GCN',
-  siteTitleAlt: 'GCN Gatsby Starter',
-  publisher: 'Publisher named GCN',
-  siteDescription:
-    'A starter template to build amazing static websites with Gatsby, Contentful and Netlify',
-  siteUrl: 'https://gcn.netlify.com',
-  postsPerHomePage: 7,
-  postsPerPage: 6,
-  author: 'GCN User',
-  authorUrl: 'https://gcn.netlify.com/about/',
-  userTwitter: '@twitter',
-  shortTitle: 'GCN App',
-  shareImage: '/logos/share.jpg',
-  shareImageWidth: 900,
-  shareImageHeight: 600,
-  siteLogo: '/logos/logo-512.png',
-  backgroundColor: '#e9e9e9',
-  themeColor: '#121212',
-  copyright: 'Copyright © 2018 GCN User',
-}
+$ npm run build
+$ npm run serve
 ```
 
-**Note:** If you do not see your changes reflected when developing locally you may need to delete the `.cache` folder and restart the development server.
-
-### Theme
-
-Edit [`/src/styles/theme.js`](https://github.com/ryanwiemer/gatsby-starter-gcn/blob/master/src/styles/theme.js)
-
-```js
-const theme = {
-  colors: {
-    base: '#121212',
-    secondary: '#e9e9e9',
-    tertiary: '#f3f3f3',
-    highlight: '#5b8bf7',
-  },
-  sizes: {
-    maxWidth: '1200px',
-    maxWidthCentered: '650px',
-  },
-  responsive: {
-    small: '35em',
-    medium: '50em',
-    large: '70em',
-  },
-}
+## Getting Started (Without Netlify)
+```
+$ gatsby new [SITE_DIRECTORY_NAME] https://github.com/netlify-templates/gatsby-starter-netlify-cms/
+$ cd [SITE_DIRECTORY_NAME]
+$ npm run build
+$ npm run serve
 ```
 
-### Using Gatsby Standard
+### Setting up the CMS
+Follow the [Netlify CMS Quick Start Guide](https://www.netlifycms.org/docs/quick-start/#authentication) to set up authentication, and hosting.
 
-1.  Quickly check your code for errors with the `npm test` script
-2.  You can view the [Gatsby Standard README](https://github.com/brandonkal/eslint-config-gatsby-standard) for details on how to integrate this project's included Gatsby Standard, Stylelint, and Prettier modules into your text editor
-
-### Content and SEO
-
-1.  You can replace the `share.jpg` and `logo-512` files in the `static/logos` directory. After replacing these files ensure that you edit the image size dimensions specified in `/src/utils/siteConfig.js`
-2.  Meta descriptions are defined in Contentful. If you choose to leave this field blank on new posts a 320 character excerpt of the post/page will be used.
-3.  **IMPORTANT:** Be sure to manually enter at least one meta description on a page and post in Contentful or the site will fail to build.
-
-## Deployment
-
-### Manual Netlify Deployment
-
-1.  Run `gatsby build`
-
-2.  Drag and drop the folder `/public/` into Netlify
-
-### Netlify Deployment From Git (Recommended)
-
-1.  [New Netlify website from Git](https://app.netlify.com/start)
-
-2.  Connect with GitHub and select your repo
-
-3.  Navigate to Netlify: **Settings** → **Build & Deploy** → **Build Environment Variables**. Add the following environment variables using the Space ID and Content Delivery API - access token from Contentful. Additionally if desired you can enter a Google Analytics ID. The variables must be named exactly like this in order to work properly.
-
+## Debugging
+Windows users might encounter ```node-gyp``` errors when trying to npm install.
+To resolve, make sure that you have both Python 2.7 and the Visual C++ build environment installed.
 ```
-ACCESS_TOKEN
-SPACE_ID
-GOOGLE_ANALYTICS
+npm config set python python2.7
+npm install --global --production windows-build-tools
 ```
 
-![](screenshots/netlify-build-environment-variables.jpg)
+[Full details here](https://www.npmjs.com/package/node-gyp 'NPM node-gyp page')
 
-4.  Navigate to Netlify: **Deploys**. Click `Trigger deploy` to manually trigger a deploy to confirm the website is building successfully using your build environment variables. At this point be aware that every time you push to `master` a deploy will automatically start and be published to production.
+## Purgecss
+This plugin uses [gatsby-plugin-purgecss](https://www.gatsbyjs.org/packages/gatsby-plugin-purgecss/) and [bulma](https://bulma.io/). The bulma builds are usually ~170K but reduced 90% by purgecss.
 
-## Additional Settings
+# CONTRIBUTING
 
-### Contentful Webhook (Optional)
-
-1.  Navigate to Netlify:
-    **Settings** → **Build & Deploy** → **Build hooks**.
-    Create a new build hook.
-
-2.  Navigate to Contentful:
-    **app.contentful.com** → **Space Settings** → **Webhooks**. Create a webhook using the Netlify build URL that you just created
-    and configure which events should trigger the build on production. For example the following will rebuild the production website every time a post or page is published, unpublished or deleted:
-
-![](screenshots/contentful-webhook-selected-events.jpg)
-
-### Netlify Form Notifications (Optional)
-
-1.  Navigate to Netlify:
-    **Forms** → **Notifications**
-
-2.  Click the add notification dropdown and select your desired notification method.
-
-![](screenshots/netlify-form-notifcations.jpg)
-
-## Useful Tips
-
-- If you make edits to your Contentful space while running `gatsby develop` you will need to stop it and rerun the command to see the changes reflected. For example a new post or page will not automatically show up until the website has been rebuilt.
-- The template assumes you have at least **one page**, **one post** and **one tag** in Contentful. If you do not the website will fail to build.
-- The SEO component assumes you have entered at least one meta description in Contentful for a post and one for a page. If you do not the website will fail to build. See the Content and SEO section above.
-- **DO NOT** store your Contentful access tokens or space ids anywhere in GitHub. Treat them like passwords.
-- **Yarn Users:** remove the `yarn*` line from the `.gitignore` file to avoid discrepancies in the Netlify deploy.
+Contributions are always welcome, no matter how large or small. Before contributing,
+please read the [code of conduct](CODE_OF_CONDUCT.md).
