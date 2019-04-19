@@ -2,9 +2,9 @@ var proxy = require("http-proxy-middleware")
 
 module.exports = {
   siteMetadata: {
-    title: 'Ekonomi',
+    title: 'Fattah',
     description:
-      'Pengkajian mengenai ekonomi Malaysia dan Global',
+      'Personal blog',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
